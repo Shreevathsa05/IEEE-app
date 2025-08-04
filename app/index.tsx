@@ -60,3 +60,6 @@ export default function Index() {
 //     "production": {}
 //   }
 // }
+
+
+// npx eas-cli build --clear-cache
