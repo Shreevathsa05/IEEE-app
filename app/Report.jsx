@@ -10,7 +10,7 @@ import {
   TouchableOpacity
 } from 'react-native';
 
-const report_url = 'https://ff83e94d3cab.ngrok-free.app/api/report';
+const report_url = 'https://ieee-hazard-analyzer-latest.onrender.com/api/report';
 
 const Report = () => {
   const [media, setMedia] = useState(null);

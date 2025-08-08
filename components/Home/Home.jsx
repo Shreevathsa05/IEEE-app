@@ -3,7 +3,6 @@ import React, { useEffect, useState } from 'react';
 import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
 import CommunityEvents from './CommunityEvents';
 
-const base_url = 'https://ff83e94d3cab.ngrok-free.app'
 export default function Home() {
     const [newsText, setNewsText] = useState('');
     const [loading, setLoading] = useState(true);
