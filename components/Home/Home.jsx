@@ -24,93 +24,91 @@ export default function Home() {
     }, []);
 
     return (
-        <ScrollView className='flex-col min-h-screen' >
-            <Text className='pt-4 pl-4 text-2xl font-extrabold '>Analytics</Text>
-            {/* Section demographics */}
-            <View className='rounded h-[20vh] w-full flex-row justify-around items-center'>
-                <View className='w-[40%] h-[60%] p-8 px-2 bg-orange-300 rounded-xl shadow-lg border-2'>
-                    <View><Text className='font-bold text-xl '>Recent Reports</Text></View>
-                    <View><Text>12</Text></View>
+        <ScrollView className="flex-col min-h-screen bg-black">
+            <Text className="pt-4 pl-4 text-2xl font-extrabold text-orange-400">Analytics</Text>
+
+            {/* Analytics Cards */}
+            <View className="rounded h-[20vh] w-full flex-row justify-around items-center">
+                <View className="w-[40%] h-[60%] p-8 px-2 bg-[#1a1a1a] border border-orange-500 rounded-xl shadow-lg">
+                    <Text className="font-bold text-xl text-orange-400">Recent Reports</Text>
+                    <Text className="text-gray-300">12</Text>
                 </View>
-                <View className='w-[44%] h-[60%] py-8 px-2 bg-orange-300 rounded-lg shadow-lg border-2'>
-                    <Text className='font-bold text-xl '>Upcoming Events</Text>
-                    <Text>5 +</Text>
+                <View className="w-[44%] h-[60%] py-8 px-2 bg-[#1a1a1a] border border-orange-500 rounded-lg shadow-lg">
+                    <Text className="font-bold text-xl text-orange-400">Upcoming Events</Text>
+                    <Text className="text-gray-300">5 +</Text>
                 </View>
             </View>
 
-
-
-            {/* Section Carbon footprint saved */}
-            {/* get C emissions saved,
-          pass on to gemini , 
-          get quote,
-          add it to section below  
-      */}
-            {/* <View className='h-auto w-full flex justify-center items-center'>
-                <Text className='text-center p-4 rounded-sm border-2 m-4' style={customStyle.textCarbon}>You saved 18% carbon — that’s like saving 1 tree🌱!</Text>
+            {/* Optional Carbon Footprint Saved */}
+            {/* <View className="h-auto w-full flex justify-center items-center">
+                <Text className="text-center p-4 rounded-sm border-2 border-orange-500 m-4 text-gray-300 bg-[#1a1a1a]">
+                    You saved 18% carbon — that’s like saving 1 tree🌱!
+                </Text>
             </View> */}
 
-
-
-            {/* news marquee */}
-            {/* <View className='mt-8 rounded-xl bg-[#ffe1a8] min-h-20 p-2'>
-                {loading ? (<ActivityIndicator size="small" color="#fff" />) : (
-                <Text className='font-semibold transform-cpu'>
-                    Recent News:{'\n\n'}
-                    {newsText}</Text>
+            {/* News Section */}
+            {/* <View className="mt-8 rounded-xl bg-[#1a1a1a] min-h-20 p-2 border border-orange-500">
+                {loading ? (
+                    <ActivityIndicator size="small" color="#FFA500" />
+                ) : (
+                    <Text className="font-semibold text-orange-400">
+                        Recent News:{'\n\n'}
+                        <Text className="text-gray-300">{newsText}</Text>
+                    </Text>
                 )}
             </View> */}
-<CommunityEvents />
 
+            <CommunityEvents />
 
-            {/* Quick links */}
-            <View className='min-h-20vh flex-col p-4'>
-                <Text className='text-2xl font-bold underline'>Quick Links..</Text>
+            {/* Quick Links */}
+            <View className="min-h-20vh flex-col p-4">
+                <Text className="text-2xl font-bold underline text-orange-400">Quick Links..</Text>
+
                 <View className="flex-row justify-around pt-8">
                     <TouchableOpacity
-                        className="rounded-xl bg-red-400 px-4 py-2"
+                        className="rounded-xl bg-orange-500 px-4 py-2"
                         onPress={() => router.navigate('/Report')}
                     >
                         <Text className="text-white font-semibold text-lg">Report Issue</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        className="rounded-xl bg-green-500 px-4 py-2"
+                        className="rounded-xl bg-orange-400 px-4 py-2"
                         onPress={() => router.navigate('/CarbonFootPrint')}
                     >
                         <Text className="text-white font-semibold text-lg">Join Events</Text>
                     </TouchableOpacity>
                 </View>
 
-
                 <View className="flex-row justify-around p-8">
                     <TouchableOpacity
-                        className="rounded-xl bg-green-400 px-4 py-2"
+                        className="rounded-xl bg-orange-500 px-4 py-2"
                         onPress={() => router.navigate('/Maps')}
                     >
                         <Text className="text-white font-semibold text-lg">📍 Map</Text>
                     </TouchableOpacity>
 
                     <TouchableOpacity
-                        className="rounded-xl bg-green-500 px-4 py-2"
+                        className="rounded-xl bg-orange-400 px-4 py-2"
                         onPress={() => router.navigate('/News')}
                     >
                         <Text className="text-white font-semibold text-lg">News</Text>
                     </TouchableOpacity>
                 </View>
             </View>
-
         </ScrollView>
-    )
+    );
 }
 
 const customStyle = StyleSheet.create({
     textCarbon: {
-        backgroundColor: '#dee2e6',
+        backgroundColor: '#1a1a1a',
         borderRadius: 7,
-        color: 'black',
+        color: '#FFA500',
+        borderWidth: 1,
+        borderColor: '#FFA500',
     },
     top: {
-        backgroundColor: '#f8f9fa'
+        backgroundColor: '#000'
     }
 });

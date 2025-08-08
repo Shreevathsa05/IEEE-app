@@ -66,7 +66,7 @@ const Report = () => {
           title,
           description: desc,
           phone,
-          image:media.base64,
+          image: media.base64,
           location: location
             ? `${location.latitude},${location.longitude}`
             : 'unknown',
@@ -92,16 +92,16 @@ const Report = () => {
   };
 
   return (
-    <ScrollView className="flex-1 bg-[#fff7ed] p-4">
-      <Text className="text-xl font-bold mb-4 text-center">
+    <ScrollView className="flex-1 bg-black p-4">
+      <Text className="text-xl font-bold mb-4 text-center text-orange-500">
         Report accidents / garbage / potholes / problems...
       </Text>
 
       <TouchableOpacity
         onPress={openCamera}
-        className="bg-amber-300 py-3 px-4 rounded-xl mb-4"
+        className="bg-orange-500 py-3 px-4 rounded-xl mb-4"
       >
-        <Text className="text-center font-semibold text-gray-800">
+        <Text className="text-center font-semibold text-black">
           📷 Take Photo
         </Text>
       </TouchableOpacity>
@@ -109,7 +109,7 @@ const Report = () => {
       {media && (
         <Image
           source={{ uri: media.uri }}
-          className="w-full h-48 rounded-xl mb-4"
+          className="w-full h-48 rounded-xl mb-4 border-2 border-orange-500"
         />
       )}
 
@@ -117,8 +117,8 @@ const Report = () => {
         placeholder="Title"
         value={title}
         onChangeText={setTitle}
-        placeholderTextColor="#888"
-        className="bg-white p-3 mb-3 rounded-xl border border-gray-300"
+        placeholderTextColor="#f97316"
+        className="bg-black text-orange-500 p-3 mb-3 rounded-xl border border-orange-500"
       />
 
       <TextInput
@@ -126,8 +126,8 @@ const Report = () => {
         value={desc}
         onChangeText={setDesc}
         multiline
-        placeholderTextColor="#888"
-        className="bg-white p-3 mb-3 rounded-xl border border-gray-300 h-24 text-base"
+        placeholderTextColor="#f97316"
+        className="bg-black text-orange-500 p-3 mb-3 rounded-xl border border-orange-500 h-24 text-base"
       />
 
       <TextInput
@@ -135,15 +135,17 @@ const Report = () => {
         value={phone}
         onChangeText={setPhone}
         keyboardType="phone-pad"
-        placeholderTextColor="#888"
-        className="bg-white p-3 mb-4 rounded-xl border border-gray-300"
+        placeholderTextColor="#f97316"
+        className="bg-black text-orange-500 p-3 mb-4 rounded-xl border border-orange-500"
       />
 
       <TouchableOpacity
         onPress={handleSubmit}
-        className="bg-green-600 py-4 rounded-xl"
+        className="bg-orange-500 py-4 rounded-xl"
       >
-        <Text className="text-white text-center font-bold text-lg">Submit Report</Text>
+        <Text className="text-black text-center font-bold text-lg">
+          Submit Report
+        </Text>
       </TouchableOpacity>
     </ScrollView>
   );

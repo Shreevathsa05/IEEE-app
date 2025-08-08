@@ -1,9 +1,9 @@
-import { View } from 'react-native'
+import { ScrollView } from 'react-native'
 import NewsIndex from '../components/News/NewsIndex'
 export default function News() {
   return (
-    <View>
+    <ScrollView className='min-h-screen'>
       <NewsIndex/>
-    </View>
+    </ScrollView>
   )
 }

@@ -19,33 +19,31 @@ export default function CommunityEvents() {
       });
   }, []);
 
-
-
   if (loading) {
     return (
-      <View className="flex-1 justify-center items-center">
-        <ActivityIndicator size="large" color="#2563EB" />
-        <Text className="text-gray-600 mt-2">Loading events...</Text>
+      <View className="flex-1 justify-center items-center bg-black">
+        <ActivityIndicator size="large" color="#FFA500" />
+        <Text className="text-gray-300 mt-2">Loading events...</Text>
       </View>
     );
   }
 
   return (
-    <View className="flex-1">
-      <ScrollView className="p-4 ">
-        <Text className="text-2xl font-bold text-gray-800 mb-4">
+    <View className="flex-1 bg-black">
+      <ScrollView className="p-4">
+        <Text className="text-2xl font-bold text-orange-400 mb-4">
           Community Events
         </Text>
 
         {events.length === 0 ? (
           <View className="flex-1 justify-center items-center mt-10">
-            <Text className="text-gray-500">No events available</Text>
+            <Text className="text-gray-400">No events available</Text>
           </View>
         ) : (
           events.map(event => (
             <View
               key={event._id}
-              className="bg-white rounded-xl shadow-md mb-4 overflow-hidden"
+              className="bg-[#1a1a1a] border border-orange-500 rounded-xl shadow-lg mb-4 overflow-hidden"
             >
               {event.image_url ? (
                 <Image
@@ -55,16 +53,16 @@ export default function CommunityEvents() {
               ) : null}
 
               <View className="p-3">
-                <Text className="text-lg font-bold text-blue-600">
+                <Text className="text-lg font-bold text-orange-400">
                   {event.title}
                 </Text>
-                <Text className="text-sm text-gray-500 mt-1">
+                <Text className="text-sm text-gray-400 mt-1">
                   {new Date(event.date).toLocaleDateString()}
                 </Text>
-                <Text className="text-sm text-gray-400">
+                <Text className="text-sm text-gray-500">
                   {event.location}
                 </Text>
-                <Text className="text-gray-700 mt-2">
+                <Text className="text-gray-300 mt-2">
                   {event.description}
                 </Text>
               </View>
@@ -72,9 +70,6 @@ export default function CommunityEvents() {
           ))
         )}
       </ScrollView>
-
-      {/* Floating Add Button */}
-      
     </View>
   );
 }

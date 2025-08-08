@@ -26,8 +26,8 @@ const LocalAlerts = () => {
 
   if (loading) {
     return (
-      <View className="p-4">
-        <ActivityIndicator size="large" color="#000" />
+      <View className="p-4 bg-black flex-1 justify-center items-center">
+        <ActivityIndicator size="large" color="#f97316" />
       </View>
     );
   }
@@ -35,19 +35,32 @@ const LocalAlerts = () => {
   const displayedData = showAll ? alerts : alerts.slice(0, 3);
 
   return (
-    <TouchableOpacity activeOpacity={0.9} onPress={() => setShowAll(prev => !prev)}>
+    <TouchableOpacity
+      activeOpacity={0.9}
+      onPress={() => setShowAll(prev => !prev)}
+      className="bg-black"
+    >
       <View className="p-4">
-        <Text className="text-xl font-bold mb-2">Local News/Alerts</Text>
+        <Text className="text-xl font-bold pb-2 text-orange-500">
+          Local News / Alerts
+        </Text>
         {displayedData.map((item, index) => (
-          <View key={index} className="mb-3 p-3 bg-yellow-100 rounded-xl border-2 shadow-xl">
-            <Text className="font-semibold text-lg">{item.message}</Text>
+          <View
+            key={index}
+            className="pb-3 p-3 bg-black rounded-xl border-2 border-orange-500 shadow-lg"
+          >
+            <Text className="font-semibold text-lg text-orange-400">
+              {item.message}
+            </Text>
             {item.description && (
-              <Text className="text-sm text-gray-700">{item.description}</Text>
+              <Text className="text-sm text-orange-300">
+                {item.description}
+              </Text>
             )}
-            <Text className="text-xs text-gray-500 mt-1">
+            <Text className="text-xs text-orange-200 mt-1">
               {new Date(item.date).toLocaleDateString()}
             </Text>
-            <Text className="text-xs text-gray-500">{item.location}</Text>
+            <Text className="text-xs text-orange-200">{item.location}</Text>
           </View>
         ))}
       </View>

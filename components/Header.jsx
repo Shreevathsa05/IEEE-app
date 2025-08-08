@@ -3,7 +3,7 @@ import { SafeAreaView } from 'react-native-safe-area-context'
 
 export default function Header() {
   return (
-    <SafeAreaView className='flex-row justify-start items-center p-4 bg-black border-orange-500 border-b-2 rounded-xl'>
+    <SafeAreaView className='flex-row justify-start items-center p-4 bg-black border-orange-500 border-b-2 '>
       <View className='w-[50px] h-[50px] mr-3'>
         <Image
           source={require('./General/Logo.png')}
