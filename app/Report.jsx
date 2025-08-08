@@ -1,5 +1,6 @@
 import * as ImagePicker from 'expo-image-picker';
-import { useState } from 'react';
+import * as Location from 'expo-location';
+import { useEffect, useState } from 'react';
 import {
   Alert,
   Image,
@@ -9,11 +10,28 @@ import {
   TouchableOpacity
 } from 'react-native';
 
+const report_url = 'https://ff83e94d3cab.ngrok-free.app/api/report';
+
 const Report = () => {
   const [media, setMedia] = useState(null);
   const [title, setTitle] = useState('');
   const [desc, setDesc] = useState('');
   const [phone, setPhone] = useState('');
+  const [location, setLocation] = useState(null);
+
+  // Request location permission and fetch current position
+  useEffect(() => {
+    (async () => {
+      let { status } = await Location.requestForegroundPermissionsAsync();
+      if (status !== 'granted') {
+        Alert.alert('Permission denied', 'Location access is required.');
+        return;
+      }
+
+      let loc = await Location.getCurrentPositionAsync({});
+      setLocation(loc.coords);
+    })();
+  }, []);
 
   const openCamera = async () => {
     const permissionResult = await ImagePicker.requestCameraPermissionsAsync();
@@ -23,8 +41,9 @@ const Report = () => {
     }
 
     const result = await ImagePicker.launchCameraAsync({
-      mediaTypes: ImagePicker.MediaTypeOptions.All,
+      mediaTypes: ImagePicker.MediaTypeOptions.Images,
       allowsEditing: true,
+      base64: true,
       quality: 0.7,
     });
 
@@ -34,22 +53,27 @@ const Report = () => {
   };
 
   const handleSubmit = async () => {
-    if (!title || !desc || !phone || !media) {
-      Alert.alert('Incomplete', 'Please fill all fields and add a photo/video.');
+    if (!title || !desc || !phone || !media || !media.base64) {
+      Alert.alert('Incomplete', 'Please fill all fields and take a photo.');
       return;
     }
 
     try {
-      const response = await fetch('https://jsonplaceholder.typicode.com/posts', {
+      const response = await fetch(report_url, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
           title,
           description: desc,
           phone,
-          mediaUri: media.uri,
+          image:media.base64,
+          location: location
+            ? `${location.latitude},${location.longitude}`
+            : 'unknown',
         }),
       });
+
+      const data = await response.json();
 
       if (response.ok) {
         Alert.alert('Success', 'Report submitted successfully!');
@@ -57,10 +81,12 @@ const Report = () => {
         setDesc('');
         setPhone('');
         setMedia(null);
+        setLocation(null);
       } else {
-        Alert.alert('Error', 'Failed to submit report.');
+        Alert.alert('Error', data.message || 'Failed to submit report.');
       }
     } catch (err) {
+      console.error(err);
       Alert.alert('Network Error', 'Could not submit report.');
     }
   };
@@ -76,7 +102,7 @@ const Report = () => {
         className="bg-amber-300 py-3 px-4 rounded-xl mb-4"
       >
         <Text className="text-center font-semibold text-gray-800">
-          📷 Take Photo / Video
+          📷 Take Photo
         </Text>
       </TouchableOpacity>
 
@@ -91,6 +117,7 @@ const Report = () => {
         placeholder="Title"
         value={title}
         onChangeText={setTitle}
+        placeholderTextColor="#888"
         className="bg-white p-3 mb-3 rounded-xl border border-gray-300"
       />
 
@@ -99,6 +126,7 @@ const Report = () => {
         value={desc}
         onChangeText={setDesc}
         multiline
+        placeholderTextColor="#888"
         className="bg-white p-3 mb-3 rounded-xl border border-gray-300 h-24 text-base"
       />
 
@@ -107,6 +135,7 @@ const Report = () => {
         value={phone}
         onChangeText={setPhone}
         keyboardType="phone-pad"
+        placeholderTextColor="#888"
         className="bg-white p-3 mb-4 rounded-xl border border-gray-300"
       />
 

@@ -1,7 +1,9 @@
 import { router } from 'expo-router';
 import React, { useEffect, useState } from 'react';
-import { ActivityIndicator, ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { ScrollView, StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import CommunityEvents from './CommunityEvents';
 
+const base_url = 'https://ff83e94d3cab.ngrok-free.app'
 export default function Home() {
     const [newsText, setNewsText] = useState('');
     const [loading, setLoading] = useState(true);
@@ -23,10 +25,11 @@ export default function Home() {
     }, []);
 
     return (
-        <ScrollView className='flex-col min-h-screen' style={customStyle.top}>
+        <ScrollView className='flex-col min-h-screen' >
+            <Text className='pt-4 pl-4 text-2xl font-extrabold '>Analytics</Text>
             {/* Section demographics */}
             <View className='rounded h-[20vh] w-full flex-row justify-around items-center'>
-                <View className='w-[40%] h-[60%] py-8 px-2 bg-orange-300 rounded-xl shadow-lg border-2'>
+                <View className='w-[40%] h-[60%] p-8 px-2 bg-orange-300 rounded-xl shadow-lg border-2'>
                     <View><Text className='font-bold text-xl '>Recent Reports</Text></View>
                     <View><Text>12</Text></View>
                 </View>
@@ -44,21 +47,21 @@ export default function Home() {
           get quote,
           add it to section below  
       */}
-            <View className='h-auto w-full flex justify-center items-center'>
+            {/* <View className='h-auto w-full flex justify-center items-center'>
                 <Text className='text-center p-4 rounded-sm border-2 m-4' style={customStyle.textCarbon}>You saved 18% carbon — that’s like saving 1 tree🌱!</Text>
-            </View>
+            </View> */}
 
 
 
             {/* news marquee */}
-            <View className='mt-8 rounded-xl bg-[#ffe1a8] min-h-20 p-2'>
+            {/* <View className='mt-8 rounded-xl bg-[#ffe1a8] min-h-20 p-2'>
                 {loading ? (<ActivityIndicator size="small" color="#fff" />) : (
                 <Text className='font-semibold transform-cpu'>
                     Recent News:{'\n\n'}
                     {newsText}</Text>
                 )}
-            </View>
-
+            </View> */}
+<CommunityEvents />
 
 
             {/* Quick links */}

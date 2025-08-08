@@ -26,14 +26,14 @@ export default function RootLayout() {
       tabBarIcon: ({color,size}) => <Ionicons name='newspaper-outline' color={color} size={size} />
     }}
     />
-
+{/* 
     <Tabs.Screen 
     name="CarbonFootPrint"
     options={{
       title: 'Community',
       tabBarIcon: ({color,size}) => <Ionicons name='people' color={color} size={size} />
     }}
-    />
+    /> */}
 
     
     <Tabs.Screen 
