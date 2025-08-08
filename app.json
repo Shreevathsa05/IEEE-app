@@ -4,7 +4,7 @@
     "slug": "saarthi-x",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/images/icon.png",
+    "icon": "./assets/components/General/Logo.png",
     "scheme": "saarthix",
     "userInterfaceStyle": "automatic",
     "newArchEnabled": true,
